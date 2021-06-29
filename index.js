@@ -9,8 +9,6 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 
 
-
-
 mongoose.connect(config.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -58,12 +56,13 @@ app.use("/api/msg", require("./server/controller/message"));
 app.use("/api/profile", require("./server/controller/profile"));
 
 app.get("/", (req, res) => {
-  res.send("hello!");
+  res.send("hello??!");
 });
 
 PORT = process.env.PORT || 5000;
 
 app.listen(PORT, (err) => {
+    console.log("port: ", PORT);
   if (err) console.log("err", err);
   console.log("Successfully Connected To Port ", PORT);
 });
