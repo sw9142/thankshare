@@ -1,0 +1,50 @@
+.container_profile{
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.input-profilepic{
+    display: flex;
+    margin: 1rem;
+    width: 300px;
+}
+
+
+.input_profile{
+width: 260px;
+padding: 0.7rem;
+}
+
+
+.container_button_profilepicupload{
+ margin: auto;
+ margin-bottom: 1rem;
+}
+
+.button_profilepicupload{
+    font-size: 0.5rem;
+}
+
+.thumbnail {
+width: 45px;
+height: 45px;
+border-radius: 50px;
+margin-bottom: 0.8rem;
+
+}
+
+.clearicon{
+font-size: 0.5rem;
+}
+
+.container_button_update{
+    width:100%;
+    text-align: end;
+}
+
+
+.button_update{
+    width:100px;
+    margin: auto 0;
+    margin-right: 2rem;
+}

@@ -1,0 +1,21 @@
+.section_bible{
+    margin: 1rem;
+
+}
+
+.section_inputs{
+    margin: 1rem;
+   
+}
+
+
+.form_bible{
+ width: 300px;
+
+}
+
+.form_inputs{
+ margin: 1rem;
+ min-width: 20px;
+ display: contents ! important;
+}

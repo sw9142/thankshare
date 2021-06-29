@@ -1,0 +1,31 @@
+.container{
+    display : flex !important;
+}
+
+.container_profileImage{
+
+padding : 0.5rem;
+align-self: center;
+width: 35px;
+flex-grow: 1;
+}
+
+.container_msg{
+width : 200vw;
+align-self: center;
+flex-grow: 3;
+}
+
+.msg{
+ background-color: white;
+ border: 1px solid #d0cfcfe0;
+ border-radius: 5px;
+ padding: 12px;
+}
+
+.container_buttons{
+
+ align-self: center;
+ flex-grow: 1;
+}
+

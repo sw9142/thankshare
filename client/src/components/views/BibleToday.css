@@ -1,0 +1,27 @@
+.bibletoday_container{
+    margin: 1rem;
+    text-align: center;
+}
+
+.bibletoday_title{
+    font-size: 2.5rem;
+    padding: 1rem;
+}
+
+.button_publish{
+    margin: 0.7rem;
+}
+
+.card{
+ max-width: 500px; 
+ margin: 2rem auto 1rem auto; 
+ padding: 0.3rem;
+
+}
+
+.foundscript{
+    margin: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 2rem;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
