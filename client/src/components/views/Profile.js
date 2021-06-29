@@ -10,12 +10,13 @@ import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import PhotoLibraryRoundedIcon from '@material-ui/icons/PhotoLibraryRounded';
 import Button from '@material-ui/core/Button';
 
-function Profile({ LoginUser, ProfileDB, getProfile }) {
+function Profile({ LoginUser, ProfileDB, getProfile, IsReady }) {
 
 
   const [Name, setName] = useState(""); //ProfileDB.name
   const [ProfileImage, setProfileImage] = useState("");
   const [Thumbnail, setThumbnail] = useState(""); //rofileDB.thumbnail
+  
   const fileInput = useRef();
   const onNameHandler = (e) => {
     setName(e.target.value);
@@ -78,7 +79,7 @@ function Profile({ LoginUser, ProfileDB, getProfile }) {
   };
 
   return (
-    <>
+    <> 
     <div className="container_profile">
     <FormControl onSubmit={onSubmitingProfile} >
       <div className="input-profilepic"> 
@@ -131,7 +132,7 @@ function Profile({ LoginUser, ProfileDB, getProfile }) {
             onClick={onSubmitingProfile} >Update</Button>
       </div>
     </FormControl>
- </div>
+ </div> 
  </>
   );
 }

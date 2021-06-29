@@ -15,7 +15,7 @@ function BibleSearch(props) {
   const [Chapter, setChapter] = useState("");
   const [FromVerse, setFromVerse] = useState("");
   const [ToVerse, setToVerse] = useState("");
-  const [Script, setScript] = useState("");
+
 
 
 const onSelectBook = (e) => {
@@ -39,7 +39,7 @@ const onSelectBook = (e) => {
       verseto: ToVerse,
     }).then((res) => {
       if (res.data.success) {
-        setScript(res.data.book);
+   
         console.log("[bibleSearch]res.data: ", res.data);
         props.getScriptFromChild(res.data.book);
       }

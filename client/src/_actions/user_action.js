@@ -7,15 +7,8 @@ export const getUser_action = async function () {
 
 try{
 
-  const request = await Axios.get("/api/users/islogin").then((res) => {
-    console.log("res.data?: ", res.data )
-    return res.data
-    });
+  const request = await Axios.get("/api/users/islogin").then((res) =>  res.data);
 
-
-  console.log("[getUser_action]",  request);
-
-console.log("[getUser_action]",  request);
 
   return {
     type: USER,

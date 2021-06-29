@@ -65,7 +65,6 @@ function Auth({  getIsLogin, getProfile }) {
 
 
 
-
   const onInputHandler = (e) => {
     const { name } = e.target;
 
@@ -111,9 +110,11 @@ function Auth({  getIsLogin, getProfile }) {
           getIsLogin();
           console.log("here i am calling getIslogin()")
           getProfile();
+ 
           history.push("/profile");
         } else {
           console.log("err: ", res.data.err);
+
           setMsg("Incorrect email or password")
         }
       });
@@ -121,6 +122,8 @@ function Auth({  getIsLogin, getProfile }) {
   };
 
   return (
+<> 
+
 
  <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -177,6 +180,7 @@ function Auth({  getIsLogin, getProfile }) {
           >
          {NewUser ? "Sign In" :  "Log In" }
           </Button>
+
           <Grid container>
             <Grid item xs>
               <Link onClick={()=>{
@@ -194,6 +198,7 @@ function Auth({  getIsLogin, getProfile }) {
       </Box>
   </Container>
 
+</>
   );
 }
 

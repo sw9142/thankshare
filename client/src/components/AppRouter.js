@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Auth from "./views/Auth";
 import LandingPage from "./views/LandingPage";
 import Profile from "./views/Profile";
@@ -8,12 +8,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BibleToday from "./views/BibleToday";
 import Sharing from "./views/Sharing";
 import Footer from "./views/Footer";
+import Loader from "react-loader-spinner";
 
 
 
-function AppRouter({ IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, setProfileDB, getIsLogin, getProfile }) {
+function AppRouter({ setIsReady, IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, setProfileDB, getIsLogin, getProfile }) {
 
-console.log("[AppRouter] : IsLogin", IsLogin, " LoginUser: ", LoginUser, " ProfileDB", ProfileDB )
+console.log("[AppRouter] : IsLogin", IsLogin, " ProfileDB", ProfileDB )
   return (
     <Router >
       {IsLogin &&  ProfileDB && (
@@ -21,14 +22,14 @@ console.log("[AppRouter] : IsLogin", IsLogin, " LoginUser: ", LoginUser, " Profi
       )}
       <Switch>
         {IsLogin && ProfileDB ? (
-          <>
+         <>
             <Route exact path="/profile">
               <Profile
                 LoginUser={LoginUser}
                 ProfileDB={ProfileDB}
                 getProfile={getProfile}
               />
-            </Route>
+            </Route> 
             <Route exact path="/bible">
               <Bible
                 LoginUser={LoginUser}
@@ -54,13 +55,13 @@ console.log("[AppRouter] : IsLogin", IsLogin, " LoginUser: ", LoginUser, " Profi
             <Route exact path="/home">
               <LandingPage LoginUser={LoginUser} ProfileDB={ProfileDB} />
             </Route>
-             <Footer    setIsLogin={setIsLogin}
-                        LoginUser={LoginUser}
-                        ProfileDB={ProfileDB}
-                        getProfile={getProfile}
-                        />
-   
+             <Footer    
+                setIsLogin={setIsLogin}
+                LoginUser={LoginUser}
+                ProfileDB={ProfileDB}
+                getProfile={getProfile} />
           </>
+      
         ) : (
           <Route exact path="/">
             <Auth  getIsLogin={getIsLogin} setLoginUser={setLoginUser} getProfile={getProfile} setIsLogin={setIsLogin} />

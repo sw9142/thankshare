@@ -1,7 +1,7 @@
 import { PROFILE } from '../_actions/types';
  
 
- export default  function (state={},action){
+ export default  function profile_reducer (state={},action){
 
     switch(action.type){
         case PROFILE:

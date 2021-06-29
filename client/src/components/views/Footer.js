@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Footer({ LoginUser, ProfileDB, setIsLogin, getProfile}) {
+export default function Footer({  LoginUser, ProfileDB, setIsLogin, getProfile}) {
 
   // console.log("ProfileDB in Footer: ", ProfileDB);
 
@@ -52,6 +52,7 @@ export default function Footer({ LoginUser, ProfileDB, setIsLogin, getProfile}) 
       if (res.data.logoutsuccess) {
         console.log("logout succeess!");
         setIsLogin(false);
+ 
         getProfile();
         history.push("/");
       } else {

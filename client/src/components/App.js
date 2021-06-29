@@ -14,14 +14,15 @@ function App() {
 
   const [IsLogin, setIsLogin] = useState(false);
   const [LoginUser, setLoginUser] = useState({});
-  const [IsInit, setIsInit] = useState(false) 
-  const theme = unstable_createMuiStrictModeTheme();
+  const [IsInit, setIsInit] = useState(false); 
 
+  const theme = unstable_createMuiStrictModeTheme();
 
   const getIsLogin = () => {
       Dispatch(getUser_action()).then((res)=>{ 
       if (res.payload.success) { 
           setIsLogin(true);
+        
         } else {
           setIsLogin(false);
         } 
@@ -31,7 +32,8 @@ function App() {
 
 useEffect(() => {
  getIsLogin();
-}, [IsLogin ])
+ console.log("it is rendering ");
+})
 
   return (
     <>
@@ -44,6 +46,7 @@ useEffect(() => {
         setIsLogin={setIsLogin}
         LoginUser={LoginUser}
        setLoginUser={setLoginUser}
+ 
         getIsLogin={getIsLogin}/>
 
       </ThemeProvider>  : "Loading..."
