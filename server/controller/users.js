@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require("../models/users");
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const authMiddleware = async (req, res, next) => {
   const token = await req.cookies.w_auth;
@@ -46,32 +48,43 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
 console.log("[/login] email: ", email);
   User.findOne({ email: email })
     .exec()
     .then((user) => {
 
-      const Token =  jwt.sign( {_id:user._id},  process.env.SECRET);
-       console.log("token? ", Token);
-      var oneHour =  moment().add(1, "hour").valueOf();
+      user.comparePassword(password, (err, isMatch)=>{
+        if(err) return res.json({
+                loginSuccess: false,
+                message: "err in generating token:",
+                err,
+              });
 
-      User.findOneAndUpdate(
-        { _id: user._id },
-        { token: Token, tokenExp: oneHour },
-        { upsert: true },
-        (err, doc) => {
-   console.log("doc:? ", doc);
-          if (err) return res.json({ loginSuccess: false, err });
+          if(isMatch){
 
-          res.cookie("w_authExp", oneHour);
-          res.cookie("w_auth", Token);
-          return res.status(200).send({
-            loginSuccess: true,
-            user: doc,
-          });
-        }
-      );
+                const Token =  jwt.sign( {_id:user._id},  process.env.SECRET);
+                console.log("token? ", Token);
+               var oneHour =  moment().add(1, "hour").valueOf();
+
+                User.findOneAndUpdate(
+                  { _id: user._id },
+                  { token: Token, tokenExp: oneHour },
+                  { upsert: true },
+                  (err, doc) => {
+                   console.log("doc:? ", doc);
+                    if (err) return res.json({ loginSuccess: false, err });
+
+                    res.cookie("w_authExp", oneHour);
+                    res.cookie("w_auth", Token);
+                    return res.status(200).send({
+                      loginSuccess: true,
+                      user: doc,
+                    });
+                  }
+                );
+          }
+      })
     }).catch((err)=>{
 
       res.json({loginSuccess: false, err})
