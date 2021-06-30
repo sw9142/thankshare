@@ -51,8 +51,7 @@ console.log("[/login] email: ", email);
   User.findOne({ email: email })
     .exec()
     .then((user) => {
-      console.log("did you find the user?: ", user);
-      console.log("process.env.SECRET", process.env.SECRET );
+
       const Token =  jwt.sign( {_id:user._id},  process.env.SECRET);
        console.log("token? ", Token);
       var oneHour =  moment().add(1, "hour").valueOf();
@@ -62,18 +61,19 @@ console.log("[/login] email: ", email);
         { token: Token, tokenExp: oneHour },
         { upsert: true },
         (err, doc) => {
-          console.log("doc?: ", doc);
+   console.log("doc:? ", doc);
           if (err) return res.json({ loginSuccess: false, err });
 
           res.cookie("w_authExp", oneHour);
           res.cookie("w_auth", Token);
           return res.status(200).send({
             loginSuccess: true,
+            user: doc,
           });
         }
       );
     }).catch((err)=>{
-   console.log("err? :", err);
+
       res.json({loginSuccess: false, err})
     });
 });

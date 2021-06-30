@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
 
 //https://thankshare.herokuapp.com/
 
@@ -50,8 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
-function Auth({  getIsLogin, getProfile }) {
+function Auth({  getIsLogin, setLoginUser, getProfile }) {
 
 
   const classes = useStyles();
@@ -62,6 +63,8 @@ function Auth({  getIsLogin, getProfile }) {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Msg, setMsg] = useState("")
+
+
 
 
 
@@ -93,25 +96,24 @@ function Auth({  getIsLogin, getProfile }) {
           console.log("success in saving user: ", res.data.newUser);
           setNewUser(false)
           setMsg("자! 이제 로그인을 해주세요! :)")
-          history.push("/")
+           history.push("/")
+       
         } else {
           console.log("err: ", res.data.err);
         }
       });
     } else {
       //log IN
-
+    
       Axios.post("/api/users/login", {
         email: Email,
         password: Password,
       }).then((res) => {
         if (res.data.loginSuccess) {
           console.log("success in login ");
-          getIsLogin();
-          console.log("here i am calling getIslogin()")
           getProfile();
- 
           history.push("/profile");
+          history.go(0)
         } else {
           console.log("err: ", res.data.err);
 
@@ -197,6 +199,8 @@ function Auth({  getIsLogin, getProfile }) {
         <Copyright />
       </Box>
   </Container>
+
+
 
 </>
   );

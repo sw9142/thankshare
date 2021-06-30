@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Auth from "./views/Auth";
 import LandingPage from "./views/LandingPage";
 import Profile from "./views/Profile";
@@ -8,13 +8,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BibleToday from "./views/BibleToday";
 import Sharing from "./views/Sharing";
 import Footer from "./views/Footer";
-import Loader from "react-loader-spinner";
 
 
 
-function AppRouter({ setIsReady, IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, setProfileDB, getIsLogin, getProfile }) {
 
-console.log("[AppRouter] : IsLogin", IsLogin, " ProfileDB", ProfileDB )
+function AppRouter({  IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, setProfileDB, getIsLogin, getProfile }) {
+console.log("[AppRouter]  LoginUser: ", LoginUser, "IsLogin ", IsLogin, "ProfileDB: ", ProfileDB)
   return (
     <Router >
       {IsLogin &&  ProfileDB && (

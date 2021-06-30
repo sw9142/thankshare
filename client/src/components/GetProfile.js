@@ -4,30 +4,33 @@ import AppRouter from "./AppRouter";
 import { getProfile_action } from "../_actions/profile_action.js";
 import { useDispatch } from "react-redux";
 
-function GetProfile({  IsLogin, setIsLogin, setLoginUser, LoginUser,  getIsLogin}) {
-
-console.log("")
+function GetProfile({   IsLogin, setIsLogin, setLoginUser, LoginUser,  getIsLogin}) {
 const Dispatch = useDispatch();
 const [ProfileDB, setProfileDB] = useState({});
 
-const getProfile =  () => {
+console.log("[GetProfile] LoginUser: ", LoginUser);
+ const data = {
+    _id: LoginUser._id, }
 
-    Dispatch(getProfile_action()).then((res) => { 
- 
+const getProfile =  () => {
+    Dispatch(getProfile_action(data)).then((res) => { 
+     
       if (res.payload.success) {
+
           setProfileDB(res.payload.profile);         
       }else{
-          setProfileDB({userId: LoginUser._id});
+          setProfileDB({userId: LoginUser._id });
       }
+    });
 
     
-    });
 };
+
 
 
 useEffect(() => {
  getProfile();
-}, [IsLogin]) 
+}, [LoginUser]) 
 
 
     return (
@@ -38,7 +41,7 @@ useEffect(() => {
         IsLogin={IsLogin}
         setIsLogin={setIsLogin}
         setLoginUser={setLoginUser}
-
+        LoginUser={LoginUser}
         ProfileDB={ProfileDB}
         setProfileDB={setProfileDB}
         getProfile={getProfile}
