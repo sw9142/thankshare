@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   menu_title: {
     textAlign : "center",
     padding: "0.7rem",
-    fontSize: "1.6rem"
+    fontSize: "1.1rem"
   },
   reading:{
     aspectRatio: "1/1"

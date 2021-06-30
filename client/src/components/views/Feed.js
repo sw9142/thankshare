@@ -15,9 +15,6 @@ function Feed({ msg, getList, isOwner, feedUserId }) {
   const [NewMsg, setNewMsg] = useState(msg.msg);
   const [FeedProfilePic, setFeedProfilePic] = useState(null)
 
-
-
-console.log("isOwner?", isOwner, "feedUserId? ", feedUserId)
   const onDeleteHandler = () => {
     Axios.post("api/msg/delete", { id: msg._id }).then((res) => {
       console.log("msg", msg);

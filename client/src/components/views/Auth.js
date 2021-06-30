@@ -12,10 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 
-
-//https://thankshare.herokuapp.com/
 
 function Copyright() {
   return (
@@ -99,7 +96,7 @@ function Auth({  getIsLogin, setLoginUser, getProfile }) {
            history.push("/")
        
         } else {
-          console.log("err: ", res.data.err);
+          setMsg(res.data.message);
         }
       });
     } else {
@@ -110,14 +107,13 @@ function Auth({  getIsLogin, setLoginUser, getProfile }) {
         password: Password,
       }).then((res) => {
         if (res.data.loginSuccess) {
-          console.log("success in login ");
+          
           getProfile();
           history.push("/profile");
           history.go(0)
         } else {
-          console.log("err: ", res.data.err);
-
-          setMsg("Incorrect email or password")
+          
+          setMsg(res.data.message)
         }
       });
     }

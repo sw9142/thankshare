@@ -13,7 +13,7 @@ import Footer from "./views/Footer";
 
 
 function AppRouter({  IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, setProfileDB, getIsLogin, getProfile }) {
-console.log("[AppRouter]  LoginUser: ", LoginUser, "IsLogin ", IsLogin, "ProfileDB: ", ProfileDB)
+
   return (
     <Router >
       {IsLogin &&  ProfileDB && (

@@ -37,11 +37,11 @@ router.post("/register", (req, res) => {
 
   user.save((err, user) => {
     if (user) {
-      console.log("succeed in saving user into DB");
+   
       res.json({ success: true, newUser: user });
     }
     if (err) {
-      console.log("err found!", err);
+     
       res.json({ success: false, err });
     }
   });
@@ -49,30 +49,24 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
-console.log("[/login] email: ", email);
+
   User.findOne({ email: email })
     .exec()
     .then((user) => {
 
       user.comparePassword(password, (err, isMatch)=>{
-        if(err) return res.json({
-                loginSuccess: false,
-                message: "err in generating token:",
-                err,
-              });
-
+      
           if(isMatch){
 
-                const Token =  jwt.sign( {_id:user._id},  process.env.SECRET);
-                console.log("token? ", Token);
-               var oneHour =  moment().add(1, "hour").valueOf();
+              const Token =  jwt.sign( {_id:user._id},  process.env.SECRET);
+              var oneHour =  moment().add(1, "hour").valueOf();
 
                 User.findOneAndUpdate(
                   { _id: user._id },
                   { token: Token, tokenExp: oneHour },
                   { upsert: true },
                   (err, doc) => {
-                   console.log("doc:? ", doc);
+               
                     if (err) return res.json({ loginSuccess: false, err });
 
                     res.cookie("w_authExp", oneHour);
@@ -83,11 +77,18 @@ console.log("[/login] email: ", email);
                     });
                   }
                 );
+          }else{
+      
+          return res.json({
+                loginSuccess: false,
+                message: "Incorrect email or password",
+                err,
+              });
+        
           }
       })
     }).catch((err)=>{
-
-      res.json({loginSuccess: false, err})
+      res.json({loginSuccess: false, message: "Account doesn't exist!" ,err})
     });
 });
 

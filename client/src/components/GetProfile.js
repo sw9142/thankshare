@@ -8,7 +8,7 @@ function GetProfile({   IsLogin, setIsLogin, setLoginUser, LoginUser,  getIsLogi
 const Dispatch = useDispatch();
 const [ProfileDB, setProfileDB] = useState({});
 
-console.log("[GetProfile] LoginUser: ", LoginUser);
+
  const data = {
     _id: LoginUser._id, }
 

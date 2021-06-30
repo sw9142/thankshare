@@ -37,7 +37,7 @@ function getScriptFromChild (text)  {
 
   const onSubmit = (e) => {
     e.preventDefault();
-console.log("on Submit is on!")
+
         Axios.post("api/bible/updateBible", {
           script: GetScript,
           userId: LoginUser.id,

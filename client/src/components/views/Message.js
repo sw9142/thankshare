@@ -15,10 +15,11 @@ function Message({ LoginUser, ProfileDB }) {
   const [MsgList, setMsgList] = useState([]);
 
   const getList = () => {
+    var sortingField = "createdAt";
     Axios.get("api/msg/getlist").then((res) => {
       if (res.data.success) {
-        const sortedList = res.data.list.sort(function(a,b) {return a.createdAt - b.createdAt});
-        console.log("sortedlist: ", sortedList);
+        const sortedList = res.data.list.sort(function(a,b) {return b[sortingField] - a[sortingField]});
+       
         setMsgList(sortedList);
       } else {
         console.log("failed getting the list");

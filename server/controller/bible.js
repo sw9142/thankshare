@@ -24,7 +24,7 @@ router.post("/updateBible", (req, res) => {
   Bible.findOne({ userId: req.body.userId })
     .then((script) => {
       if (script) {
-        console.log("it already had user id");
+   
         Bible.updateOne(
           { userId: req.body.userId },
           { script: req.body.script }
@@ -34,7 +34,7 @@ router.post("/updateBible", (req, res) => {
           })
           .catch((err) => res.json({ success: false, err }));
       } else if (!script) {
-        console.log("if you dont find");
+   
     
         const bible = new Bible({
           script: req.body.script,
@@ -60,7 +60,7 @@ router.post("/getscript", (req, res) => {
   Bible.findOne({ userId: req.body.userId })
     .then((doc) => {
       if (doc) {
-        console.log("doc found!:", doc);
+     
         res.json({ success: true, script: doc });
       }
     })

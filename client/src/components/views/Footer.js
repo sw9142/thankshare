@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Footer({  LoginUser, ProfileDB, setIsLogin, getProfile}) {
 
-  // console.log("ProfileDB in Footer: ", ProfileDB);
+
 
  const classes = useStyles();
  const history = useHistory();

@@ -81,7 +81,7 @@ router.post("/getThumbnail", (req, res) => {
 });
 
 router.post("/getProfile", (req, res) => {
-console.log("_id?: ", req.body._id);
+
   Profile.findOne({ userId: req.body._id }).then((profile) => {
     if (profile) {
       res.json({ success: true, profile: profile });
