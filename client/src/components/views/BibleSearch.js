@@ -39,8 +39,7 @@ const onSelectBook = (e) => {
       verseto: ToVerse,
     }).then((res) => {
       if (res.data.success) {
-   
-        console.log("[bibleSearch]res.data: ", res.data);
+  
         props.getScriptFromChild(res.data.book);
       }
     });

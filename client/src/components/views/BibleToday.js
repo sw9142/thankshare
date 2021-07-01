@@ -11,7 +11,7 @@ function BibleToday({ LoginUser }) {
   const [ScriptDB, setScriptDB] = useState("");
 
   useEffect(() => {
-    console.log("loading..");
+
     refreshScript();
   }, []);
 
@@ -26,9 +26,9 @@ function getScriptFromChild (text)  {
   const refreshScript = () => {
     Axios.post("api/bible/getscript", { userId: adminUserId }).then((res) => {
       if (res.data.success) {
-        console.log("success getting script from DB!", res.data.script);
+       
         setScriptDB(res.data.script.script);
-        console.log("res.data.script", res.data.script.script);
+
       } else {
         alert("err!", res.data.err);
       }
