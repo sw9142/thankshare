@@ -29,7 +29,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "react-scripts build",
     "dev": "concurrently \"nodemon index.js\" \"npm run start --prefix client\"",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",  
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "cacheDirectories": [
     "node_modules",
