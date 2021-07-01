@@ -9,8 +9,30 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import CheckIcon from '@material-ui/icons/Check';
 import ReplayIcon from '@material-ui/icons/Replay';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+
+inputProps :{
+    fontSize: "15px",
+    width: "62vw",
+    paddingTop: "0.3rem",
+    paddingLeft: "0.3rem"
+},
+inputLabelProps:{
+    fontSize: "9",
+    
+},
+}));
+
+
+
+
 
 function Feed({ msg, getList, isOwner, feedUserId }) {
+
+  const classes = useStyles();
+
   const [Editing, setEditing] = useState(false);
   const [NewMsg, setNewMsg] = useState(msg.msg);
   const [FeedProfilePic, setFeedProfilePic] = useState(null)
@@ -18,8 +40,7 @@ function Feed({ msg, getList, isOwner, feedUserId }) {
   const onDeleteHandler = () => {
     Axios.post("api/msg/delete", { id: msg._id }).then((res) => {
       console.log("msg", msg);
-      if (res.data.success) {
-        console.log("delete!");
+      if (res.data.success) {    
         getList();
       }
     });
@@ -40,7 +61,7 @@ function Feed({ msg, getList, isOwner, feedUserId }) {
       Axios.post("api/msg/update", { newMsg: NewMsg, id: msg._id }).then(
         (res) => {
           if (res.data.success) {
-            console.log("update success");
+        
             getList();
           } else {
             alert("err!");
@@ -68,11 +89,7 @@ useEffect(() => {
           { FeedProfilePic ? (
               <img
                 src={FeedProfilePic}
-                style={{
-                          borderRadius: "25px",
-                          width: "35px",
-                          height: "35px",
-                        }}
+                className="feed-img"
                 alt="thumbnail"
               />
             ): <AccountCircleIcon/>}
@@ -85,8 +102,8 @@ useEffect(() => {
           variant="standard"
           margin="small"
           color="primary"
-          inputProps={{style: {fontSize: 10, width: "68vw"}}} // font size of input text
-          InputLabelProps={{style: {fontSize: 12}}} // font size of input label
+          inputProps={{className: classes.inputProps}} 
+          InputLabelProps={{className: classes.inputLabelProps}}
           onChange={onUpdatingMessage} 
           value={NewMsg}
           multiline 
@@ -103,17 +120,13 @@ useEffect(() => {
           <div className="container_buttons" >
             {Editing ? (
               <>
-              <div style={{margin: "1rem"}}>
+              <div className="btngroup" >
               <ButtonGroup variant="text" size="small" orientation="vertical" >
-                  <Button name="cancel"  onClick={onEditHandler}     style={{
-                  fontSize: "0.6rem",
-                }}>
+                  <Button name="cancel"  onClick={onEditHandler}  className="btn">
                    <ReplayIcon/>
                   </Button>
                   <Button name="update"  
-                    onClick={onEditHandler}    style={{
-                  fontSize: "0.6rem",
-                }}>
+                    onClick={onEditHandler}  className="btn">
                    <CheckIcon/>
                   </Button>
                 </ButtonGroup>
@@ -124,9 +137,9 @@ useEffect(() => {
                 {isOwner && (
                   <ButtonGroup variant="text" size="small" >
                   
-                    <Button onClick={onDeleteHandler}  ><CloseIcon  style={{fontSize: "0.9rem"}}/></Button>
+                    <Button onClick={onDeleteHandler}  ><CloseIcon  className="icons"/></Button>
                     <Button name="edit" onClick={onEditHandler} >
-                      <EditIcon style={{fontSize: "0.9rem"}} />
+                      <EditIcon  className="icons" />
                     </Button>
                   </ButtonGroup>
                 

@@ -2,3 +2,13 @@
 .footer{
     background-color: #E1E2E1;
 }
+
+.profile-thumbnail{
+    border-radius: 25px;
+    width: 40px;
+    height: 40px;
+}
+
+.hello{
+    padding-left: 0.5rem;
+}

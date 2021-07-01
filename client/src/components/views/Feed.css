@@ -29,3 +29,21 @@ flex-grow: 3;
  flex-grow: 1;
 }
 
+
+.btngroup{
+    margin: 1rem;
+}
+
+.btn{
+ font-size: 0.6rem;
+}
+
+.icons{
+    font-size: 0.9rem;
+}
+
+.feed-img{
+    border-radius: 25px;
+    width: 35px;
+    height: 35px;
+}

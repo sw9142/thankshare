@@ -45,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  typography: {
+    color: "red",
+    fontWeigth: "bolder",
+    padding: "0.5rem",
+  }
 }));
 
 
@@ -134,7 +139,7 @@ function Auth({  getIsLogin, setLoginUser, getProfile }) {
         </Typography>
         { Msg &&
          <>
-        <Typography style={{color:"red", fontWeigth:"bolder", padding:"0.5rem"}}component="h5" variant="subtitle2">
+        <Typography className= {classes.typography} component="h5" variant="subtitle2">
          {Msg}
         </Typography>
         </>

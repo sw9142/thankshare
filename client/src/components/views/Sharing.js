@@ -5,9 +5,9 @@ import "./Sharing.css"
 function Sharing({ LoginUser, ProfileDB }) {
 
   return (
-    <div style={{padding: "1rem" }} >
-      <div style={{padding: "0.8rem"}}> 
-      Hello <span  style={{color: "blue", textTransform: "uppercase", fontWeight: "bold"}}>{ProfileDB.name}</span>, share your thought! :)
+    <div className="message_container" >
+      <div className="message_subcontainer"> 
+      Hello <span className="sharing_hello" >{ProfileDB.name}</span>, share your thought! :)
       </div>
       <div  className="message_container">
       <Message LoginUser={LoginUser} ProfileDB={ProfileDB} />

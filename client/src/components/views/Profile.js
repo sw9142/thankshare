@@ -48,10 +48,8 @@ function Profile({ LoginUser, ProfileDB, getProfile, IsReady }) {
         thumbnail: Thumbnail,
       }).then((res) => {
         if (res.data.updatesuccess) {
-          console.log("profile update success!", res.data.doc);
           getProfile();
         } else if(res.data.createsuccess){
-          console.log("new Profile created success" , res.data.profile)
           getProfile();
         } else {
           console.log("res.data.err: ", res.data.err);
@@ -83,15 +81,15 @@ function Profile({ LoginUser, ProfileDB, getProfile, IsReady }) {
     <div className="container_profile">
     <FormControl onSubmit={onSubmitingProfile} >
       <div className="input-profilepic"> 
-        <InputLabel style={{padding:"0.3rem"}} htmlFor="input-with-icon-adornment">Update Your Profile</InputLabel>
+        <InputLabel className="inputlabel" htmlFor="input-with-icon-adornment">Update Your Profile</InputLabel>
         <Input
           id="input-with-icon-adornment"
           startAdornment={
                             <InputAdornment position="start">
                                {Thumbnail ? ( <>
                                                 <img src={Thumbnail} className="thumbnail"  alt="profile" />
-                                                <ClearRoundedIcon   onClick={onClickClear} fontSize="small" style={{paddingTop:"0.1rem"}}/> 
-                                              </> ) :    <AccountCircle  style={{width:"50px", height:"50px"}}/> }
+                                                <ClearRoundedIcon   onClick={onClickClear} fontSize="medium" className="clearroundicon"/> 
+                                              </> ) :    <AccountCircle fontSize="large" /> }
                              </InputAdornment> }
           value={Name}
           placeholder="Your name?"

@@ -80,17 +80,13 @@ export default function Footer({  LoginUser, ProfileDB, setIsLogin, getProfile})
                 <img
                   src={ProfileDB.thumbnail}       
                   alt="thumbnail"
-                  style={{
-                    borderRadius: "25px",
-                    width: "40px",
-                    height: "40px",
-                  }}
+                  className="profile-thumbnail"
                 />
               ) : (
                 <AccountCircleIcon  className={classes.accountIcon} />
               )}
 
-              <div style={{paddingLeft: "0.5rem"}} >Hello, {ProfileDB.name}?</div>
+              <div className="hello" >Hello, {ProfileDB.name}?</div>
          
             </Button>
             <Menu

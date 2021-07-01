@@ -62,7 +62,7 @@ function getScriptFromChild (text)  {
       )}
       { GetScript &&
            <> 
-           <div dangerouslySetInnerHTML={{ __html: GetScript }} style={{fontSize: "1.2rem", padding:"1rem"}}></div>     
+           <div dangerouslySetInnerHTML={{ __html: GetScript }} className="getscript" ></div>     
            <Button 
             onClick={onSubmit} 
             variant="contained" 

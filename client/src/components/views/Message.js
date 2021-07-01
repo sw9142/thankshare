@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Feed from "./Feed";
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import Divider from "@material-ui/core/Divider";
 import  "./Message.css"
 
+const useStyles = makeStyles((theme) => ({
+
+inputProps :{
+    fontSize: "10",
+    width: "68vw",
+},
+inputLabelProps:{
+    fontSize: "12",
+},
+}));
 
 function Message({ LoginUser, ProfileDB }) {
 
-
+ const classes = useStyles();
   const [Msg, setMsg] = useState("");
   const [MsgList, setMsgList] = useState([]);
 
@@ -58,15 +69,15 @@ function Message({ LoginUser, ProfileDB }) {
  
   return (
     <>
-    <form  noValidate autoComplete="off" onSubmit={onSubmitInput} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <form  noValidate autoComplete="off" onSubmit={onSubmitInput} className="form-container" >
      <div  className="textfield" >
           <TextField 
           id="outlined-basic" 
           label="Our God always speaks to us..." 
           variant="outlined"
           color="primary"
-          inputProps={{style: {fontSize: 10, width: "74vw"}}} // font size of input text
-          InputLabelProps={{style: {fontSize: 12}}} // font size of input label
+          inputProps={{ className: classes.inputProps}} 
+          InputLabelProps={{ className: classes.inputLabelProps }} 
           onChange={onMsgInput} 
           value={Msg}
           multiline 
@@ -78,15 +89,10 @@ function Message({ LoginUser, ProfileDB }) {
             <Button  
             variant="contained"
             color="primary" 
-            
             onClick={onSubmitInput} 
-            endIcon={<SendIcon   style={{
-             fontSize: "0.6rem"
-           }}/>} 
+            endIcon={<SendIcon  className="endicon"/>} 
             size="small" 
-           style={{
-             fontSize: "0.6rem",
-           }}
+            className="sendbtn"
             > Send </Button> 
        </div>
      
@@ -98,7 +104,7 @@ function Message({ LoginUser, ProfileDB }) {
       <div>
         {MsgList.map((msg, index) => (
           <>
-            <div key={index} className="feed_container">
+            <div key={index} >
               <Feed
                 msg={msg}
                 getList={getList}

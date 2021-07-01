@@ -1,5 +1,7 @@
-.textfield{
-
+.form-container{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
 }
 
 .button_container{
@@ -8,5 +10,10 @@
 
 }
 
+.endicon{
+    font-size: 0.6rem;
+}
 
-
+.sendbtn{
+    font-size: 0.6rem;
+}
