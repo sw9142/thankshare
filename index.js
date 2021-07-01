@@ -26,6 +26,9 @@ app.use(cookieParser());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
+
+
+
 const corsOptions = {
   origin: "https://ibibles.net/",
   credential: true,
@@ -42,10 +45,13 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
   // index.html for all page routes  html or routing and naviagtion
+
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
   });
 }
+
+
 
 
 // parse application/json
