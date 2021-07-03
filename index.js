@@ -34,7 +34,7 @@ app.use(
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.gstatic.com/*", "https://fonts.googleapis.com/css?family=Pacifico&display=swap","data:"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com/s/pacifico/","https://fonts.gstatic.com/s/sourcesanspro","https://fonts.gstatic.com/s/montserrat/","https://fonts.gstatic.com/s/opensans"],
+      fontSrc: ["'self'", "data:"],
     },
   })
 );
