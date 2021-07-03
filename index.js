@@ -7,8 +7,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
-const helmet = require("helmet");
-const csp = require("helmet-csp");
+const contentSecurityPolicy = require("helmet-csp");
+
+
 
 mongoose.connect(config.mongoURI, {
     useNewUrlParser: true,
@@ -27,15 +28,15 @@ app.use(cookieParser());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
-app.use(helmet())
-pp.use(csp({
-  directives: {
-    defaultSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
-    styleSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
-    fontSrc:["'self'", "https://fonts.gstatic.com/*", "data:"],
-  }
-}))
-
+app.use(
+  contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
+      styleSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
+    },
+  })
+);
 
 
 const corsOptions = {
@@ -44,24 +45,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use(function(req, res, next) {
-  res.status(404);
 
-  // respond with html page
-  if (req.accepts('html')) {
-    res.render('404', { url: req.url });
-    return;
-  }
-
-  // respond with json
-  if (req.accepts('json')) {
-    res.json({ error: 'Not found' });
-    return;
-  }
-
-  // default to plain-text. send()
-  res.type('txt').send('Not found');
-});
 
 
 // Serve static assets if in production
