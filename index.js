@@ -31,7 +31,9 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(
   contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrcElem : ['self', "https://fonts.googleapis.com"],
       styleSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
       fontSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
     },
