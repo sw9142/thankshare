@@ -35,7 +35,24 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.use(function(req, res, next) {
+  res.status(404);
 
+  // respond with html page
+  if (req.accepts('html')) {
+    res.render('404', { url: req.url });
+    return;
+  }
+
+  // respond with json
+  if (req.accepts('json')) {
+    res.json({ error: 'Not found' });
+    return;
+  }
+
+  // default to plain-text. send()
+  res.type('txt').send('Not found');
+});
 
 
 // Serve static assets if in production
@@ -46,7 +63,7 @@ if (process.env.NODE_ENV === "production") {
 
   // index.html for all page routes  html or routing and naviagtion
   app.get('*', function (req, res) {
-    const fullPath = path.join(__dirname,  '/client', 'build', 'index.html')
+    const fullPath = path.join(__dirname,  '../client', 'build', 'index.html')
     res.sendFile(fullPath)
   })
 }
