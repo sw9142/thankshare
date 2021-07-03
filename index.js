@@ -33,8 +33,8 @@ app.use(
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.gstatic.com/*", "https://fonts.googleapis.com/css?family=Pacifico&display=swap","data:"],
-      fontSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.gstatic.com/*", "data:"],
+      fontSrc: ["'self'", "data:"],
     },
   })
 );
