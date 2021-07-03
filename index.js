@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === "production") {
 
   // index.html for all page routes  html or routing and naviagtion
   app.get('*', function (req, res) {
-    const fullPath = path.join(__dirname,  '../client', 'build', 'index.html')
+    const fullPath = path.join(__dirname,  '/client', 'build', 'index.html')
     res.sendFile(fullPath)
   })
 }
