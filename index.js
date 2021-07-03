@@ -7,8 +7,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
-
+const helmet = require("helmet");
+const csp = require("helmet-csp");
 
 mongoose.connect(config.mongoURI, {
     useNewUrlParser: true,
@@ -27,11 +27,14 @@ app.use(cookieParser());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
-app.use(expressCspHeader({
-    directives: {
-        'default-src': [SELF, 'https://fonts.gstatic.com'] ,
-    }
-}));
+app.use(helmet())
+pp.use(csp({
+  directives: {
+    defaultSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
+    styleSrc: ["'self'", "https://fonts.gstatic.com/*", "data:"],
+    fontSrc:["'self'", "https://fonts.gstatic.com/*", "data:"],
+  }
+}))
 
 
 
