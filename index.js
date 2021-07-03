@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
 
 mongoose.connect(config.mongoURI, {
@@ -26,6 +27,11 @@ app.use(cookieParser());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
+app.use(expressCspHeader({
+    directives: {
+        'default-src': [SELF, 'https://fonts.gstatic.com'] ,
+    }
+}));
 
 
 
