@@ -38,6 +38,13 @@ app.use(cors(corsOptions));
 
 
 
+// parse application/json
+
+app.use("/api/bible", require("./server/controller/bible"));
+app.use("/api/users", require("./server/controller/users"));
+app.use("/api/msg", require("./server/controller/message"));
+app.use("/api/profile", require("./server/controller/profile"));
+
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
@@ -51,23 +58,6 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
-
-
-
-
-
-
-
-// parse application/json
-
-app.use("/api/bible", require("./server/controller/bible"));
-app.use("/api/users", require("./server/controller/users"));
-app.use("/api/msg", require("./server/controller/message"));
-app.use("/api/profile", require("./server/controller/profile"));
-
-app.get("/", (req, res) => {
-  res.send("hello??!");
-});
 
 PORT = process.env.PORT || 5000;
 
