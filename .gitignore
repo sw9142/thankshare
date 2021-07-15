@@ -16,3 +16,4 @@ yarn-error.log*npm-debug.log
 /component.json
 /bower_components
 
+node_modules
