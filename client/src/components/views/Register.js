@@ -51,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Auth({ getIsLogin, setLoginUser, getProfile }) {
+function Register() {
   const classes = useStyles();
 
   const history = useHistory();
-
+  const [NewUser, setNewUser] = useState(false);
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Msg, setMsg] = useState("");
@@ -73,16 +73,15 @@ function Auth({ getIsLogin, setLoginUser, getProfile }) {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    //log IN
-
-    Axios.post("/api/users/login", {
+    //create account
+    Axios.post("/api/users/register", {
       email: Email,
       password: Password,
     }).then((res) => {
-      if (res.data.loginSuccess) {
-        getProfile();
-        history.push("/profile");
-        history.go(0);
+      if (res.data.success) {
+        console.log("success in saving user: ", res.data.newUser);
+        setNewUser(false);
+        history.push("/");
       } else {
         setMsg(res.data.message);
       }
@@ -98,7 +97,7 @@ function Auth({ getIsLogin, setLoginUser, getProfile }) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Welcome User Login!
+            Create your account!
           </Typography>
           {Msg && (
             <>
@@ -149,18 +148,18 @@ function Auth({ getIsLogin, setLoginUser, getProfile }) {
               className={classes.submit}
               onClick={onSubmitHandler}
             >
-              Log In
+              Create
             </Button>
 
             <Grid container>
               <Grid item xs>
                 <Link
                   onClick={() => {
-                    history.push("/register");
+                    history.push("/");
                   }}
                   variant="body2"
                 >
-                  Don't have an account? Sign up!
+                  Already have an account? Login!
                 </Link>
               </Grid>
             </Grid>
@@ -174,4 +173,4 @@ function Auth({ getIsLogin, setLoginUser, getProfile }) {
   );
 }
 
-export default Auth;
+export default Register;

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarLink: {
     marginRight: theme.spacing(1.5),
-    fontSize: "1rem",
+    fontSize: "0.9rem",
   },
 
   profile: {},

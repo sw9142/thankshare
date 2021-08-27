@@ -7,11 +7,9 @@ router.post("/upload", (req, res) => {
 
   msg.save((err, msg) => {
     if (msg) {
-  
       res.json({ success: true });
     }
     if (err) {
-     
       res.json({ success: false, err });
     }
   });
@@ -34,7 +32,6 @@ router.post("/update", (req, res) => {
 router.get("/getlist", (req, res) => {
   Msg.find()
     .then((list) => {
-      console.log(list);
       res.json({ success: true, list: list });
     })
     .catch((err) => console.log("err found: ", err));
@@ -43,7 +40,6 @@ router.get("/getlist", (req, res) => {
 router.post("/delete", (req, res) => {
   Msg.findOneAndDelete({ _id: req.body.id })
     .then((list) => {
-    
       res.json({ success: true });
     })
     .catch((err) => {

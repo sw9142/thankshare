@@ -8,27 +8,31 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BibleToday from "./views/BibleToday";
 import Sharing from "./views/Sharing";
 import Footer from "./views/Footer";
+import Register from "./views/Register";
 
-
-
-
-function AppRouter({  IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, setProfileDB, getIsLogin, getProfile }) {
-
+function AppRouter({
+  IsLogin,
+  setIsLogin,
+  setLoginUser,
+  LoginUser,
+  ProfileDB,
+  setProfileDB,
+  getIsLogin,
+  getProfile,
+}) {
   return (
-    <Router >
-      {IsLogin &&  ProfileDB && (
-          <Nav/>
-      )}
+    <Router>
+      {IsLogin && ProfileDB && <Nav />}
       <Switch>
         {IsLogin && ProfileDB ? (
-         <>
+          <>
             <Route exact path="/profile">
               <Profile
                 LoginUser={LoginUser}
                 ProfileDB={ProfileDB}
                 getProfile={getProfile}
               />
-            </Route> 
+            </Route>
             <Route exact path="/bible">
               <Bible
                 LoginUser={LoginUser}
@@ -43,7 +47,7 @@ function AppRouter({  IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, 
                 getProfile={getProfile}
               />
             </Route>
-                <Route exact path="/sharing">
+            <Route exact path="/sharing">
               <Sharing
                 LoginUser={LoginUser}
                 ProfileDB={ProfileDB}
@@ -54,21 +58,34 @@ function AppRouter({  IsLogin, setIsLogin,  setLoginUser, LoginUser, ProfileDB, 
             <Route exact path="/home">
               <LandingPage LoginUser={LoginUser} ProfileDB={ProfileDB} />
             </Route>
-             <Footer    
-                setIsLogin={setIsLogin}
-                LoginUser={LoginUser}
-                ProfileDB={ProfileDB}
-                getProfile={getProfile} />
+            <Footer
+              setIsLogin={setIsLogin}
+              LoginUser={LoginUser}
+              ProfileDB={ProfileDB}
+              getProfile={getProfile}
+            />
           </>
-      
         ) : (
-          <Route exact path="/">
-            <Auth  getIsLogin={getIsLogin} setLoginUser={setLoginUser} getProfile={getProfile} setIsLogin={setIsLogin} />
-          </Route>
+          <>
+            <Route exact path="/">
+              <Auth
+                getIsLogin={getIsLogin}
+                setLoginUser={setLoginUser}
+                getProfile={getProfile}
+                setIsLogin={setIsLogin}
+              />
+            </Route>
+            <Route exact path="/register">
+              <Register
+                getIsLogin={getIsLogin}
+                setLoginUser={setLoginUser}
+                getProfile={getProfile}
+                setIsLogin={setIsLogin}
+              />
+            </Route>
+          </>
         )}
-
       </Switch>
-     
     </Router>
   );
 }

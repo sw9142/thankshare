@@ -6,7 +6,7 @@ const Bible = require("../models/bible");
 
 router.post("/get", (req, res) => {
   Axios.get(
-    `http://ibibles.net/quote.php?kor-${req.body.book}/${req.body.chapter}:${req.body.versefrom}-${req.body.verseto}`
+    `http://ibibles.net/quote.php?niv-${req.body.book}/${req.body.chapter}:${req.body.versefrom}-${req.body.verseto}`
   ).then((response) => {
     if (response) {
       const responseData = response.data.substring(
@@ -20,11 +20,9 @@ router.post("/get", (req, res) => {
 });
 
 router.post("/updateBible", (req, res) => {
-
   Bible.findOne({ userId: req.body.userId })
     .then((script) => {
       if (script) {
-   
         Bible.updateOne(
           { userId: req.body.userId },
           { script: req.body.script }
@@ -34,8 +32,6 @@ router.post("/updateBible", (req, res) => {
           })
           .catch((err) => res.json({ success: false, err }));
       } else if (!script) {
-   
-    
         const bible = new Bible({
           script: req.body.script,
           userId: req.body.userId,
@@ -60,7 +56,6 @@ router.post("/getscript", (req, res) => {
   Bible.findOne({ userId: req.body.userId })
     .then((doc) => {
       if (doc) {
-     
         res.json({ success: true, script: doc });
       }
     })
