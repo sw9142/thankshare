@@ -3,7 +3,7 @@ import Auth from "./views/Auth";
 import LandingPage from "./views/LandingPage";
 import Profile from "./views/Profile";
 import Bible from "./views/Bible";
-import Nav from "./views/Nav/Nav";
+import Nav from "./views/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BibleToday from "./views/BibleToday";
 import Sharing from "./views/Sharing";
